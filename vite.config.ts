@@ -7,6 +7,8 @@ export default defineConfig({
   // Caminhos relativos: funciona em localhost e em victin7.github.io/turma-ads
   base: './',
   plugins: [react(), tailwindcss()],
+  // A cena 3D (Three.js) é um chunk carregado sob demanda; o tamanho é esperado.
+  build: { chunkSizeWarningLimit: 1000 },
   test: {
     environment: 'jsdom',
   },

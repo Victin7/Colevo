@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { supabase } from '../../lib/supabase'
 import { Botao, Campo, Cartao, Erro } from '../../components/ui'
+import { Tilt } from '../../components/Tilt'
 
 export function TelaLogin() {
   const [modo, setModo] = useState<'entrar' | 'cadastrar'>('entrar')
@@ -31,10 +32,11 @@ export function TelaLogin() {
   }
 
   return (
-    <main className="grid min-h-screen place-items-center bg-zinc-950 px-4 text-zinc-100">
-      <Cartao className="w-full max-w-sm space-y-5 p-6">
-        <div>
-          <h1 className="text-2xl font-bold">Turma ADS</h1>
+    <main className="grid min-h-screen place-items-center px-4 text-zinc-100">
+      <Tilt max={6} className="entrar-3d w-full max-w-sm rounded-2xl">
+      <Cartao className="space-y-5 p-6">
+        <div className="profundidade-1">
+          <h1 className="texto-degrade text-3xl font-extrabold tracking-tight">Turma ADS</h1>
           <p className="text-zinc-400">Provas, entregas e materiais da turma num lugar só.</p>
         </div>
 
@@ -58,6 +60,7 @@ export function TelaLogin() {
           {modo === 'entrar' ? 'Não tem conta? Cadastre-se' : 'Já tem conta? Entrar'}
         </button>
       </Cartao>
+      </Tilt>
     </main>
   )
 }
