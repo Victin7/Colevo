@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '../../lib/supabase'
 import type { Enums } from '../../lib/database.types'
+import { nomeSeguro } from './nome'
 
 const chave = (salaId: string) => ['materiais', salaId] as const
 const BUCKET = 'materiais'
@@ -26,13 +27,6 @@ export function useMateriais(salaId: string) {
 }
 
 export type Material = NonNullable<ReturnType<typeof useMateriais>['data']>[number]
-
-/** Nome de arquivo seguro para o Storage: sem acentos, espaços ou símbolos. */
-export function nomeSeguro(nome: string): string {
-  const [base, ext] = /^(.*?)(\.[^.]+)?$/.exec(nome)!.slice(1)
-  const limpo = base.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '').toLowerCase()
-  return `${limpo.slice(0, 60) || 'arquivo'}${(ext ?? '').toLowerCase()}`
-}
 
 export interface NovoMaterial {
   materiaId: string

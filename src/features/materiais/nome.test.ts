@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { nomeSeguro } from './api'
+import { nomeSeguro } from './nome'
 
 describe('nomeSeguro', () => {
   it('remove acentos, espaços e símbolos mantendo a extensão', () => {
