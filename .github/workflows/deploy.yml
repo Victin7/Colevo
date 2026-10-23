@@ -1,8 +1,9 @@
-name: Deploy no GitHub Pages
+name: Testes e deploy
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -11,11 +12,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  testes:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +25,32 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm test
+      - name: Testes de unidade (Vitest)
+        run: npm test
+      - name: Instalar Chromium para o Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Testes de ponta a ponta (Playwright, desktop e celular)
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: relatorio-playwright
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7
+
+  build:
+    needs: testes
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
       - run: npm run build
         env:
           # Chave pública do Supabase (protegida pelo RLS); pode ficar aqui.

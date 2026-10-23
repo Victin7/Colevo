@@ -37,7 +37,7 @@ export function TelaLogin() {
       <Cartao className="space-y-5 p-6">
         <div className="profundidade-1">
           <h1 className="texto-degrade text-3xl font-extrabold tracking-tight">Turma ADS</h1>
-          <p className="text-zinc-400">Provas, entregas e materiais da turma num lugar só.</p>
+          <p className="text-zinc-400">Crie uma sala, passe o código e a senha pra turma, e ninguém mais esquece prova.</p>
         </div>
 
         <form onSubmit={enviar} className="space-y-3">

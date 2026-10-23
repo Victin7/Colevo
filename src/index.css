@@ -85,3 +85,25 @@ body {
   .entrar-3d, .texto-degrade { animation: none; }
   .tilt { transition: none; transform: none; }
 }
+
+/* ---------- Calendário 3D: a grade inclinada como uma mesa ---------- */
+.calendario-3d {
+  transform: rotateX(16deg);
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+}
+.dia-3d {
+  transform-style: preserve-3d;
+}
+.dia-3d:hover {
+  translate: 0 -3px;
+}
+@media (max-width: 640px) {
+  .calendario-3d { transform: rotateX(10deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .calendario-3d { transform: none; }
+}
+
+/* Usado só nos prints automáticos do README */
+.sem-animacao-entrada .entrar-3d { animation: none; }
