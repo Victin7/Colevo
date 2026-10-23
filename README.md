@@ -22,7 +22,7 @@ turmas ─┬─ turma_membros ── perfis
         └─ eventos ──┘
 ```
 
-O schema completo está em [`supabase/migrations/0001_schema_inicial.sql`](supabase/migrations/0001_schema_inicial.sql).
+O schema está em [`supabase/migrations/`](supabase/migrations/). A segurança foi testada simulando três usuários: quem cria a turma, um colega que entra pelo código e um intruso, que não vê nada.
 
 ## Rodando localmente
 
@@ -37,7 +37,8 @@ npm test
 
 - [x] Base do projeto, schema e RLS
 - [x] Cálculo de prazo/urgência com testes
-- [ ] Login (e-mail) e criar/entrar em turma
-- [ ] Calendário de provas e entregas
+- [x] Login (e-mail) e criar/entrar em turma por código de convite
+- [x] Lista de provas e entregas com urgência
+- [ ] Calendário mensal e matérias
 - [ ] Materiais por matéria (links, PDFs, notas)
 - [ ] Lembretes por e-mail (Edge Function + agendamento)
