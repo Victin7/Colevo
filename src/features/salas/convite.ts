@@ -9,7 +9,7 @@ export function linkConvite(codigo: string, base: string = window.location.origi
 /** Texto pronto para mandar no grupo. A senha só entra se o líder quiser. */
 export function textoConvite(nomeSala: string, codigo: string, link: string, senha?: string): string {
   return [
-    `🚀 Entra na sala *${nomeSala}* no Turma ADS!`,
+    `🚀 Entra na sala *${nomeSala}* no Colevo!`,
     '',
     `🔑 Código: *${codigo}*`,
     senha ? `🔒 Senha: *${senha}*` : '🔒 Senha: pede pro líder da sala',

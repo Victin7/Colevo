@@ -40,7 +40,7 @@ export function useNotificacoes(eventos: EventoLembravel[] | undefined, concluid
       const chave = chaveNotificacao(ev.id)
       if (ler(chave)) continue
       const quando = ev.dias === 0 ? 'é HOJE' : ev.dias === 1 ? 'é amanhã' : `é em ${ev.dias} dias`
-      new Notification(`${ev.titulo} ${quando}`, { body: `Sala ${nomeSala} — Turma ADS`, tag: ev.id })
+      new Notification(`${ev.titulo} ${quando}`, { body: `Sala ${nomeSala} — Colevo`, tag: ev.id })
       gravar(chave)
     }
   }, [eventos, concluidos, diasAntes, nomeSala])

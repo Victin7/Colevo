@@ -2,6 +2,7 @@ import { createHashHistory, createRootRoute, createRoute, createRouter, Link, Ou
 import { useQueryClient } from '@tanstack/react-query'
 import { Botao } from './components/ui'
 import { BotaoInstalar } from './components/BotaoInstalar'
+import { Logo } from './components/Logo'
 import { Fundo3D } from './components/Fundo3D'
 import { supabase } from './lib/supabase'
 import { TelaLogin } from './features/auth/TelaLogin'
@@ -30,7 +31,7 @@ function Raiz() {
         <main className="min-h-screen px-4 py-6 text-zinc-100">
           <div className="mx-auto max-w-3xl space-y-8">
             <header className="vidro sticky top-4 z-20 flex items-center justify-between rounded-2xl px-4 py-2">
-              <Link to="/" className="texto-degrade font-black">Turma ADS</Link>
+              <Link to="/" aria-label="Colevo — início"><Logo /></Link>
               <nav className="flex items-center gap-1 text-sm text-zinc-400">
                 <BotaoInstalar />
                 <Link to="/lembretes" className="rounded-lg px-3 py-2 hover:bg-white/5 [&.active]:text-white" title="Lembretes">🔔<span className="hidden sm:inline"> Lembretes</span></Link>
@@ -79,7 +80,7 @@ export const router = createRouter({
   history: createHashHistory(),
   defaultNotFoundComponent: () => (
     <p className="text-center text-zinc-400">
-      Página não encontrada. <Link to="/" className="text-indigo-300 underline">Voltar</Link>
+      Página não encontrada. <Link to="/" className="text-blue-300 underline">Voltar</Link>
     </p>
   ),
 })

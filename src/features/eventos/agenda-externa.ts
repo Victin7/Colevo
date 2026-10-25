@@ -24,7 +24,7 @@ export function linkGoogleAgenda(ev: EventoExportavel, nomeSala: string): string
     action: 'TEMPLATE',
     text: ev.materia ? `${ev.titulo} (${ev.materia})` : ev.titulo,
     dates: `${formatoUtc(inicio)}/${formatoUtc(ev.prazo)}`,
-    details: [ev.descricao, `Sala: ${nomeSala} — Turma ADS`].filter(Boolean).join('\n'),
+    details: [ev.descricao, `Sala: ${nomeSala} — Colevo`].filter(Boolean).join('\n'),
   })
   return `https://calendar.google.com/calendar/render?${params}`
 }
@@ -36,11 +36,11 @@ function escaparIcs(t: string): string {
 
 /** Arquivo .ics com todas as provas, cada uma com alarme 1 dia antes e 2 horas antes. */
 export function gerarIcs(eventos: EventoExportavel[], nomeSala: string, agora: Date = new Date()): string {
-  const linhas = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Turma ADS//PT-BR', 'CALSCALE:GREGORIAN', `X-WR-CALNAME:${escaparIcs(nomeSala)}`]
+  const linhas = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Colevo//PT-BR', 'CALSCALE:GREGORIAN', `X-WR-CALNAME:${escaparIcs(nomeSala)}`]
   for (const ev of eventos) {
     linhas.push(
       'BEGIN:VEVENT',
-      `UID:${ev.id}@turma-ads`,
+      `UID:${ev.id}@colevo`,
       `DTSTAMP:${formatoUtc(agora)}`,
       `DTSTART:${formatoUtc(new Date(ev.prazo.getTime() - UMA_HORA))}`,
       `DTEND:${formatoUtc(ev.prazo)}`,

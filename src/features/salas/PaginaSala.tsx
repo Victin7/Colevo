@@ -41,7 +41,7 @@ export function PaginaSala() {
   if (!sala.data) {
     return (
       <Vazio icone="🚫" titulo="Sala não encontrada">
-        Ela pode ter sido excluída ou você foi removido. <Link to="/" className="text-indigo-300 underline">Voltar às salas</Link>
+        Ela pode ter sido excluída ou você foi removido. <Link to="/" className="text-blue-300 underline">Voltar às salas</Link>
       </Vazio>
     )
   }
@@ -68,7 +68,7 @@ export function PaginaSala() {
             onClick={() => navigate({ to: '/sala/$salaId', params: { salaId }, search: { aba: a.id }, replace: true })}
             aria-current={aba === a.id ? 'page' : undefined}
             className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition sm:flex-1 sm:justify-center ${
-              aba === a.id ? 'bg-gradient-to-r from-indigo-400/25 to-fuchsia-400/25 text-white shadow-inner' : 'text-zinc-400 hover:bg-white/5 hover:text-zinc-200'
+              aba === a.id ? 'bg-gradient-to-r from-violet-500/30 via-blue-500/25 to-cyan-400/25 text-white shadow-inner' : 'text-zinc-400 hover:bg-white/5 hover:text-zinc-200'
             }`}
           >
             <span aria-hidden>{a.icone}</span> {a.rotulo}

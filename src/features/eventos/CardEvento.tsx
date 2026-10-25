@@ -61,7 +61,7 @@ export function CardEvento({ evento: ev, agora, feito, podeApagar, nomeSala, aoA
           </p>
           {ev.descricao && <p className="mt-1 line-clamp-2 text-sm text-zinc-400">{ev.descricao}</p>}
           <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs">
-            <a href={linkGoogleAgenda({ ...ev, materia: ev.materia?.nome }, nomeSala)} target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-indigo-300">
+            <a href={linkGoogleAgenda({ ...ev, materia: ev.materia?.nome }, nomeSala)} target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-blue-300">
               📅 Google Agenda
             </a>
             {podeApagar && (

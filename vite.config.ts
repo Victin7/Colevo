@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  // Caminhos relativos: funciona em localhost e em victin7.github.io/Turma-ADS
+  // Caminhos relativos: funciona em localhost e em victin7.github.io/<repositório>
   base: './',
   plugins: [
     react(),
@@ -13,11 +13,11 @@ export default defineConfig({
     // Torna o app instalável no celular (ícone na tela inicial, abre em tela cheia)
     VitePWA({
       registerType: 'autoUpdate', // nova versão publicada = atualiza sozinho
-      includeAssets: ['icone.svg', 'apple-touch-icon.png'],
+      includeAssets: ['favicon.png', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Turma ADS',
-        short_name: 'Turma ADS',
-        description: 'Provas, entregas, matérias e materiais da turma, em salas com código e senha.',
+        name: 'Colevo — Crescemos juntos',
+        short_name: 'Colevo',
+        description: 'A turma organizada junto: provas, entregas, matérias e materiais em salas com código e senha.',
         lang: 'pt-BR',
         start_url: './',
         scope: './',
@@ -27,7 +27,7 @@ export default defineConfig({
         icons: [
           { src: 'icone-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icone-512.png', sizes: '512x512', type: 'image/png' },
-          { src: 'icone-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'icone-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
       workbox: {

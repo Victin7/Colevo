@@ -41,13 +41,13 @@ export function AbaAgenda({ salaId, nomeSala, euId, lider }: { salaId: string; n
   return (
     <div className="space-y-6">
       {lembretes.length > 0 && (
-        <Cartao className="entrar-3d border-fuchsia-400/30 bg-fuchsia-500/5">
+        <Cartao className="entrar-3d border-violet-400/30 bg-violet-500/5">
           <p className="mb-2 font-semibold">🔔 Chegando aí</p>
           <ul className="space-y-1 text-sm">
             {lembretes.slice(0, 4).map((l) => (
               <li key={l.id} className="flex justify-between gap-3">
                 <span className="truncate">{l.titulo}</span>
-                <span className="shrink-0 font-medium text-fuchsia-300">{l.dias === 0 ? 'hoje' : l.dias === 1 ? 'amanhã' : `em ${l.dias} dias`}</span>
+                <span className="shrink-0 font-medium text-violet-300">{l.dias === 0 ? 'hoje' : l.dias === 1 ? 'amanhã' : `em ${l.dias} dias`}</span>
               </li>
             ))}
           </ul>
@@ -140,7 +140,7 @@ function NovoEventoForm({ salaId }: { salaId: string }) {
 
   if (!aberto) {
     return (
-      <button onClick={() => setAberto(true)} className="vidro entrar-3d flex w-full items-center justify-center gap-2 rounded-2xl border-dashed p-4 text-zinc-300 transition hover:border-indigo-400/50 hover:text-white" style={atraso(2)}>
+      <button onClick={() => setAberto(true)} className="vidro entrar-3d flex w-full items-center justify-center gap-2 rounded-2xl border-dashed p-4 text-zinc-300 transition hover:border-blue-400/50 hover:text-white" style={atraso(2)}>
         <span className="text-xl">＋</span> Adicionar prova, entrega ou apresentação
       </button>
     )

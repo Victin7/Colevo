@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { supabase } from '../../lib/supabase'
 import { Botao, Campo, Cartao, Erro } from '../../components/ui'
 import { Tilt } from '../../components/Tilt'
+import { Logo } from '../../components/Logo'
 
 export function TelaLogin() {
   const [modo, setModo] = useState<'entrar' | 'cadastrar'>('entrar')
@@ -36,8 +37,8 @@ export function TelaLogin() {
       <Tilt max={6} className="entrar-3d w-full max-w-sm rounded-2xl">
       <Cartao className="space-y-5 p-6">
         <div className="profundidade-1">
-          <h1 className="texto-degrade text-3xl font-extrabold tracking-tight">Turma ADS</h1>
-          <p className="text-zinc-400">Crie uma sala, passe o código e a senha pra turma, e ninguém mais esquece prova.</p>
+          <h1 className="mb-3"><Logo variante="completa" /></h1>
+          <p className="text-zinc-400">Crie uma sala, passe o código e a senha pra turma, e ninguém mais esquece prova, trabalho ou entrega.</p>
         </div>
 
         <form onSubmit={enviar} className="space-y-3">

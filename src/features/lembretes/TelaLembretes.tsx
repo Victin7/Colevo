@@ -50,7 +50,7 @@ export function TelaLembretes() {
               key={o.dias}
               onClick={() => alternarDia(o.dias)}
               aria-pressed={dias.includes(o.dias)}
-              className={`rounded-xl border px-3 py-3 text-sm transition ${dias.includes(o.dias) ? 'border-fuchsia-400/60 bg-fuchsia-400/10 text-white' : 'border-white/10 text-zinc-400 hover:text-zinc-200'}`}
+              className={`rounded-xl border px-3 py-3 text-sm transition ${dias.includes(o.dias) ? 'border-violet-400/60 bg-violet-400/10 text-white' : 'border-white/10 text-zinc-400 hover:text-zinc-200'}`}
             >
               {o.rotulo}
             </button>
@@ -62,7 +62,7 @@ export function TelaLembretes() {
         <p className="font-semibold">Como avisar</p>
 
         <label className="flex cursor-pointer items-start gap-3">
-          <input type="checkbox" checked={email} onChange={(e) => setEmail(e.target.checked)} className="mt-1 size-4 accent-fuchsia-400" />
+          <input type="checkbox" checked={email} onChange={(e) => setEmail(e.target.checked)} className="mt-1 size-4 accent-violet-400" />
           <span>
             <span className="font-medium">📧 Por e-mail</span>
             <span className="block text-sm text-zinc-400">Um e-mail de manhã, nos dias escolhidos, para o que você ainda não marcou como feito.</span>

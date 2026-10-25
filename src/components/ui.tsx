@@ -3,10 +3,10 @@ import { useEffect, type ButtonHTMLAttributes, type CSSProperties, type InputHTM
 export function Botao({ variante = 'primario', className = '', ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variante?: 'primario' | 'fantasma' | 'perigo' | 'contorno' }) {
   const estilos = {
     primario:
-      'bg-gradient-to-r from-indigo-400 to-fuchsia-400 text-zinc-950 shadow-[0_8px_24px_-8px_rgba(165,180,252,0.7)] hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px_rgba(232,121,249,0.7)] active:translate-y-0',
+      'bg-gradient-to-r from-violet-600 via-blue-600 to-cyan-500 text-white shadow-[0_8px_24px_-8px_rgba(59,130,246,0.8)] hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px_rgba(34,211,238,0.7)] active:translate-y-0',
     fantasma: 'text-zinc-300 hover:bg-white/5',
     perigo: 'border border-red-400/30 text-red-300 hover:bg-red-500/10',
-    contorno: 'border border-white/10 text-zinc-200 hover:border-indigo-400/50 hover:bg-white/5',
+    contorno: 'border border-white/10 text-zinc-200 hover:border-blue-400/50 hover:bg-white/5',
   }
   return (
     <button
@@ -17,7 +17,7 @@ export function Botao({ variante = 'primario', className = '', ...props }: Butto
 }
 
 const estiloEntrada =
-  'w-full rounded-lg border border-white/10 bg-zinc-950/60 px-3 py-2 outline-none transition focus:border-indigo-400 focus:shadow-[0_0_0_3px_rgba(129,140,248,0.2)]'
+  'w-full rounded-lg border border-white/10 bg-zinc-950/60 px-3 py-2 outline-none transition focus:border-blue-400 focus:shadow-[0_0_0_3px_rgba(129,140,248,0.2)]'
 
 export function Campo({ rotulo, className = '', ...props }: InputHTMLAttributes<HTMLInputElement> & { rotulo: string }) {
   return (
@@ -93,7 +93,7 @@ export function BarraProgresso({ valor, total }: { valor: number; total: number 
   const pct = total === 0 ? 0 : Math.round((valor / total) * 100)
   return (
     <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/5" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
-      <div className="h-full rounded-full bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-emerald-300 transition-[width] duration-700" style={{ width: `${pct}%` }} />
+      <div className="h-full rounded-full bg-gradient-to-r from-violet-500 via-blue-500 to-teal-300 transition-[width] duration-700" style={{ width: `${pct}%` }} />
     </div>
   )
 }

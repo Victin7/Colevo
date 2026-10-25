@@ -47,14 +47,14 @@ export function TelaSalas() {
             <li key={s.id} className="entrar-3d" style={atraso(i + 3)}>
               <button onClick={() => abrirSala(s.id)} className="w-full text-left">
                 <Tilt className="rounded-2xl">
-                  <Cartao className="flex items-center gap-4 transition hover:border-indigo-400/50">
-                    <div className="profundidade-1 grid size-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-indigo-400 to-fuchsia-400 text-lg font-black text-zinc-950 shadow-lg shadow-indigo-500/30">
+                  <Cartao className="flex items-center gap-4 transition hover:border-blue-400/50">
+                    <div className="profundidade-1 grid size-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-violet-600 via-blue-500 to-cyan-400 text-lg font-black text-white shadow-lg shadow-blue-500/30">
                       {s.nome.trim().charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-semibold">{s.nome}</p>
                       <p className="text-sm text-zinc-500">
-                        <span className="font-mono text-indigo-300">{s.codigo}</span> · {s.total} {s.total === 1 ? 'aluno' : 'alunos'}
+                        <span className="font-mono text-blue-300">{s.codigo}</span> · {s.total} {s.total === 1 ? 'aluno' : 'alunos'}
                       </p>
                     </div>
                     <span className="text-zinc-500" aria-hidden>→</span>
@@ -78,7 +78,7 @@ export function TelaSalas() {
             <p className="text-zinc-400">Passe o código e a senha para a turma:</p>
             <CodigoGrande codigo={criada.codigo} />
             <p>
-              Senha: <span className="rounded-md bg-white/5 px-2 py-1 font-mono text-fuchsia-300">{criada.senha}</span>
+              Senha: <span className="rounded-md bg-white/5 px-2 py-1 font-mono text-violet-300">{criada.senha}</span>
             </p>
             <p className="text-xs text-zinc-500">Guarde a senha: por segurança ela não fica visível depois. Você pode trocar no painel do líder.</p>
             <div className="flex justify-center"><Compartilhar nome={criada.nome} codigo={criada.codigo} senha={criada.senha} /></div>
@@ -94,8 +94,8 @@ function BotaoGrande({ icone, titulo, texto, onClick, i }: { icone: string; titu
   return (
     <button onClick={onClick} className="entrar-3d text-left" style={atraso(i)}>
       <Tilt className="rounded-2xl" max={12}>
-        <Cartao className="relative overflow-hidden p-6 transition hover:border-fuchsia-400/50">
-          <div className="pointer-events-none absolute -right-6 -top-6 size-28 rounded-full bg-fuchsia-400/10 blur-2xl" />
+        <Cartao className="relative overflow-hidden p-6 transition hover:border-violet-400/50">
+          <div className="pointer-events-none absolute -right-6 -top-6 size-28 rounded-full bg-violet-400/10 blur-2xl" />
           <div className="profundidade-2 text-4xl">{icone}</div>
           <p className="profundidade-1 mt-3 text-xl font-black uppercase tracking-wide">{titulo}</p>
           <p className="profundidade-1 text-sm text-zinc-400">{texto}</p>
@@ -118,8 +118,8 @@ function FormCriar({ aoCriar }: { aoCriar: (s: SalaCriada) => void }) {
 
   return (
     <form onSubmit={enviar} className="space-y-3">
-      <Campo rotulo="Nome da sala" placeholder="ADS 3º sem — Noite" maxLength={60} value={nome} onChange={(e) => setNome(e.target.value)} required autoFocus />
-      <Campo rotulo={`Senha da sala (mín. ${SENHA_MINIMA} caracteres)`} placeholder="ex: unicid2026" minLength={SENHA_MINIMA} value={senha} onChange={(e) => setSenha(e.target.value)} required />
+      <Campo rotulo="Nome da sala" placeholder="Turma de Cálculo — 2º sem" maxLength={60} value={nome} onChange={(e) => setNome(e.target.value)} required autoFocus />
+      <Campo rotulo={`Senha da sala (mín. ${SENHA_MINIMA} caracteres)`} placeholder="ex: turma2026" minLength={SENHA_MINIMA} value={senha} onChange={(e) => setSenha(e.target.value)} required />
       <p className="text-xs text-zinc-500">A senha impede que alguém entre só chutando o código.</p>
       <Erro erro={criar.error} />
       <Botao type="submit" disabled={criar.isPending} className="w-full">{criar.isPending ? 'Criando…' : 'Criar sala'}</Botao>

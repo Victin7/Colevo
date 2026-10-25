@@ -8,7 +8,7 @@ import * as THREE from 'three'
  * Este arquivo é carregado sob demanda (React.lazy) para não pesar o primeiro acesso.
  */
 
-const CORES = ['#a5b4fc', '#c4b5fd', '#f0abfc', '#7dd3fc']
+const CORES = ['#60a5fa', '#8b5cf6', '#22d3ee', '#2dd4bf'] // as cores da logo do Colevo
 
 type Forma = 'icosaedro' | 'toro' | 'octaedro' | 'cubo'
 
@@ -79,7 +79,7 @@ function Estrelas({ quantidade = 900 }) {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[posicoes, 3]} />
       </bufferGeometry>
-      <pointsMaterial size={0.05} color="#c7d2fe" transparent opacity={0.7} sizeAttenuation />
+      <pointsMaterial size={0.05} color="#bfdbfe" transparent opacity={0.7} sizeAttenuation />
     </points>
   )
 }
@@ -115,8 +115,8 @@ export default function Cena3D() {
         <fog attach="fog" args={['#09090b', 6, 22]} />
         <ambientLight intensity={0.45} />
         <directionalLight position={[5, 6, 5]} intensity={1.2} />
-        <pointLight position={[-6, -3, 2]} intensity={30} color="#818cf8" />
-        <pointLight position={[6, 3, 1]} intensity={25} color="#e879f9" />
+        <pointLight position={[-6, -3, 2]} intensity={30} color="#3b82f6" />
+        <pointLight position={[6, 3, 1]} intensity={25} color="#8b5cf6" />
         <Parallax>
           {(celular ? FORMAS.slice(0, 4) : FORMAS).map((f, i) => (
             // Tela estreita: aproxima as formas do centro e diminui, para aparecerem atrás do conteúdo

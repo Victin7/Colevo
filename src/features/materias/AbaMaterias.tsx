@@ -21,7 +21,7 @@ export function AbaMaterias({ salaId }: { salaId: string }) {
       ) : (
         <button
           onClick={() => setEdicao({ nome: '', professor: '', cor: CORES_MATERIA[(materias.data?.length ?? 0) % CORES_MATERIA.length] })}
-          className="vidro entrar-3d flex w-full items-center justify-center gap-2 rounded-2xl border-dashed p-4 text-zinc-300 transition hover:border-indigo-400/50 hover:text-white"
+          className="vidro entrar-3d flex w-full items-center justify-center gap-2 rounded-2xl border-dashed p-4 text-zinc-300 transition hover:border-blue-400/50 hover:text-white"
         >
           <span className="text-xl">＋</span> Nova matéria
         </button>
@@ -44,7 +44,7 @@ export function AbaMaterias({ salaId }: { salaId: string }) {
                   <p className="text-sm text-zinc-400">{m.professor ? `👤 ${m.professor}` : 'Professor não informado'}</p>
                   <p className="mt-2 text-xs text-zinc-500">{proximas(m.id)} {proximas(m.id) === 1 ? 'prova/entrega chegando' : 'provas/entregas chegando'}</p>
                   <div className="mt-3 flex gap-3 text-xs">
-                    <button className="text-zinc-400 hover:text-indigo-300" onClick={() => setEdicao({ id: m.id, nome: m.nome, professor: m.professor ?? '', cor: m.cor })}>✏️ Editar</button>
+                    <button className="text-zinc-400 hover:text-blue-300" onClick={() => setEdicao({ id: m.id, nome: m.nome, professor: m.professor ?? '', cor: m.cor })}>✏️ Editar</button>
                     <button
                       className="text-zinc-400 hover:text-red-300"
                       onClick={() => confirm(`Apagar "${m.nome}"? As provas continuam, mas os materiais desta matéria serão apagados.`) && apagar.mutate(m.id)}

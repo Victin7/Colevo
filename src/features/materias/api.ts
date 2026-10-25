@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '../../lib/supabase'
 
 /** Paleta pensada para o fundo escuro: todas com bom contraste. */
-export const CORES_MATERIA = ['#a5b4fc', '#f0abfc', '#7dd3fc', '#86efac', '#fde047', '#fdba74', '#fca5a5', '#c4b5fd']
+export const CORES_MATERIA = ['#60a5fa', '#a78bfa', '#22d3ee', '#2dd4bf', '#fde047', '#fdba74', '#fca5a5', '#c4b5fd']
 
 const chave = (salaId: string) => ['materias', salaId] as const
 

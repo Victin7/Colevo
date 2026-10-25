@@ -29,7 +29,7 @@ export function BotaoInstalar() {
         await evento.userChoice
         setEvento(null)
       }}
-      className="rounded-lg px-3 py-2 text-indigo-300 hover:bg-white/5"
+      className="rounded-lg px-3 py-2 text-blue-300 hover:bg-white/5"
       title="Instalar como app"
     >
       📲<span className="hidden sm:inline"> Instalar</span>

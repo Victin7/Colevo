@@ -27,7 +27,7 @@ export function AbaMembros({ salaId, nomeSala, euId, lider }: { salaId: string; 
           {membros.data?.map((m, i) => (
             <li key={m.user_id} className="entrar-3d" style={atraso(i)}>
               <Cartao className="flex items-center gap-3 py-3">
-                <div className="grid size-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-indigo-400/80 to-fuchsia-400/80 font-bold text-zinc-950">
+                <div className="grid size-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-600 via-blue-500 to-cyan-400 font-bold text-white">
                   {m.nome.charAt(0).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">

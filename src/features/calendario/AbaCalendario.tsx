@@ -5,7 +5,7 @@ import { useConcluidos, useEventos, type Evento } from '../eventos/api'
 import { iconesTipo, rotulosTipo } from '../eventos/CardEvento'
 import { DIAS_SEMANA, gerarMes, nomeMes } from './mes'
 
-const COR_PADRAO = '#a5b4fc'
+const COR_PADRAO = '#60a5fa'
 
 /**
  * Calendário do mês em 3D: a grade fica inclinada como uma mesa,
@@ -42,7 +42,7 @@ export function AbaCalendario({ salaId }: { salaId: string }) {
         <Botao variante="contorno" onClick={() => mudarMes(-1)} aria-label="Mês anterior" className="px-3">←</Botao>
         <div className="text-center">
           <h3 className="text-xl font-bold">{nomeMes(mes.ano, mes.mes)}</h3>
-          <button onClick={() => { setMes({ ano: hoje.getFullYear(), mes: hoje.getMonth() }); setSelecionado(hoje) }} className="text-xs text-zinc-500 hover:text-indigo-300">
+          <button onClick={() => { setMes({ ano: hoje.getFullYear(), mes: hoje.getMonth() }); setSelecionado(hoje) }} className="text-xs text-zinc-500 hover:text-blue-300">
             voltar para hoje
           </button>
         </div>
@@ -69,7 +69,7 @@ export function AbaCalendario({ salaId }: { salaId: string }) {
                 aria-pressed={ativo}
                 className={`dia-3d relative flex aspect-square flex-col sm:aspect-[5/4] rounded-lg border p-1 text-left transition sm:rounded-xl sm:p-1.5 ${
                   doMes ? 'border-white/10 bg-zinc-900' : 'border-transparent bg-zinc-950/60 text-zinc-600'
-                } ${ativo ? 'ring-2 ring-fuchsia-400' : ''} ${ehHoje ? 'border-indigo-400/70' : ''}`}
+                } ${ativo ? 'ring-2 ring-violet-400' : ''} ${ehHoje ? 'border-blue-400/70' : ''}`}
                 style={
                   cor
                     ? {
@@ -81,7 +81,7 @@ export function AbaCalendario({ salaId }: { salaId: string }) {
                     : undefined
                 }
               >
-                <span className={`text-xs font-semibold sm:text-sm ${ehHoje ? 'text-indigo-300' : ''}`}>{data.getDate()}</span>
+                <span className={`text-xs font-semibold sm:text-sm ${ehHoje ? 'text-blue-300' : ''}`}>{data.getDate()}</span>
                 {evs.length > 0 && (
                   <>
                     <span className="mt-auto flex flex-wrap gap-0.5">

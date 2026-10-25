@@ -5,7 +5,7 @@ test.describe('sem login', () => {
   test('mostra a tela de login e alterna para cadastro', async ({ page }) => {
     await prepararMock(page, { logado: false })
     await page.goto('./')
-    await expect(page.getByRole('heading', { name: 'Turma ADS' })).toBeVisible()
+    await expect(page.getByRole('img', { name: /Colevo/ })).toBeVisible()
     await page.getByText('Não tem conta? Cadastre-se').click()
     await expect(page.getByLabel('Seu nome')).toBeVisible()
   })

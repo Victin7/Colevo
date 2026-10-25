@@ -21,7 +21,7 @@ export function CodigoGrande({ codigo, tamanho = 'g' }: { codigo: string; tamanh
         {codigo.split('').map((letra, i) => (
           <span
             key={i}
-            className={`${caixa} grid place-items-center rounded-lg bg-gradient-to-b from-zinc-100 to-zinc-300 font-mono font-black text-zinc-900 shadow-[0_4px_0_#6366f1,0_10px_18px_-6px_rgba(99,102,241,0.6)] transition group-hover:-translate-y-0.5`}
+            className={`${caixa} grid place-items-center rounded-lg bg-gradient-to-b from-zinc-100 to-zinc-300 font-mono font-black text-zinc-900 shadow-[0_4px_0_#3b82f6,0_10px_18px_-6px_rgba(59,130,246,0.6)] transition group-hover:-translate-y-0.5`}
             style={{ transform: `rotateX(12deg)`, transitionDelay: `${i * 25}ms` }}
           >
             {letra}

@@ -43,10 +43,11 @@ function montarEmail(nome: string, itens: Pendente[]) {
 
   const html = `<div style="background:#09090b;padding:32px 16px;font-family:Arial,sans-serif">
     <div style="max-width:520px;margin:0 auto;background:#18181b;border:1px solid #3f3f46;border-radius:16px;padding:24px">
-      <h1 style="margin:0 0 4px;font-size:22px;color:#a5b4fc">Turma ADS</h1>
+      <h1 style="margin:0;font-size:24px;letter-spacing:1px;color:#60a5fa">COLEVO</h1>
+      <p style="margin:0 0 16px;font-size:11px;letter-spacing:2px;color:#71717a">CRESCEMOS JUNTOS.</p>
       <p style="margin:0 0 16px;color:#d4d4d8">Oi, ${escapar(nome)}! Isso está chegando:</p>
       <table style="width:100%;border-collapse:collapse">${linhas}</table>
-      <a href="${APP_URL}" style="display:inline-block;margin-top:20px;background:#a5b4fc;color:#09090b;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:bold">Abrir o app</a>
+      <a href="${APP_URL}" style="display:inline-block;margin-top:20px;background:linear-gradient(90deg,#7c3aed,#2563eb,#06b6d4);color:#ffffff;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:bold">Abrir o Colevo</a>
       <p style="margin-top:20px;font-size:12px;color:#71717a">Você recebe isso porque ativou lembretes por e-mail. Dá para mudar em 🔔 Lembretes no app.</p>
     </div>
   </div>`
@@ -68,7 +69,7 @@ Deno.serve(async (req) => {
 
   const chave = Deno.env.get('RESEND_API_KEY')
   if (!chave) return resposta({ pendentes: pendentes.length, enviados: 0, aviso: 'RESEND_API_KEY não configurada' })
-  const remetente = Deno.env.get('EMAIL_REMETENTE') ?? 'Turma ADS <onboarding@resend.dev>'
+  const remetente = Deno.env.get('EMAIL_REMETENTE') ?? 'Colevo <onboarding@resend.dev>'
 
   // Um e-mail por aluno, juntando tudo o que está chegando para ele.
   const porAluno = new Map<string, Pendente[]>()

@@ -27,7 +27,7 @@ export function AbaMateriais({ salaId, euId, lider }: { salaId: string; euId?: s
     return (
       <Vazio icone="📚" titulo="Cadastre as matérias primeiro">
         Os materiais ficam organizados por matéria.{' '}
-        <button className="text-indigo-300 underline" onClick={() => navigate({ to: '/sala/$salaId', params: { salaId }, search: { aba: 'materias' } })}>
+        <button className="text-blue-300 underline" onClick={() => navigate({ to: '/sala/$salaId', params: { salaId }, search: { aba: 'materias' } })}>
           Ir para Matérias
         </button>
       </Vazio>
@@ -80,15 +80,15 @@ export function AbaMateriais({ salaId, euId, lider }: { salaId: string; euId?: s
                     {m.tipo === 'nota' && <p className="mt-2 whitespace-pre-wrap text-sm text-zinc-300">{m.conteudo}</p>}
                     <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
                       {m.tipo === 'link' && m.url && (
-                        <a href={m.url} target="_blank" rel="noreferrer noopener" className="text-indigo-300 hover:underline">Abrir link ↗</a>
+                        <a href={m.url} target="_blank" rel="noreferrer noopener" className="text-blue-300 hover:underline">Abrir link ↗</a>
                       )}
                       {m.tipo === 'arquivo' && m.arquivo_path && (
-                        <button onClick={() => abrir(m)} className="text-indigo-300 hover:underline">Abrir arquivo ↗</button>
+                        <button onClick={() => abrir(m)} className="text-blue-300 hover:underline">Abrir arquivo ↗</button>
                       )}
                       <button
                         onClick={() => curtir.mutate({ materialId: m.id, curtir: !curti })}
                         aria-pressed={curti}
-                        className={`rounded-full px-2.5 py-0.5 text-xs transition ${curti ? 'bg-fuchsia-400/20 text-fuchsia-300' : 'bg-white/5 text-zinc-400 hover:text-fuchsia-300'}`}
+                        className={`rounded-full px-2.5 py-0.5 text-xs transition ${curti ? 'bg-violet-400/20 text-violet-300' : 'bg-white/5 text-zinc-400 hover:text-violet-300'}`}
                       >
                         {curti ? '💜' : '🤍'} {m.curtidas.length}
                       </button>
@@ -142,7 +142,7 @@ function NovoMaterial({ salaId }: { salaId: string }) {
 
   if (!aberto) {
     return (
-      <button onClick={() => setAberto(true)} className="vidro entrar-3d flex w-full items-center justify-center gap-2 rounded-2xl border-dashed p-4 text-zinc-300 transition hover:border-indigo-400/50 hover:text-white">
+      <button onClick={() => setAberto(true)} className="vidro entrar-3d flex w-full items-center justify-center gap-2 rounded-2xl border-dashed p-4 text-zinc-300 transition hover:border-blue-400/50 hover:text-white">
         <span className="text-xl">＋</span> Compartilhar material
       </button>
     )

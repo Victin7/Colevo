@@ -41,3 +41,10 @@ test('prints', async ({ page }, info) => {
   await page.waitForTimeout(1500)
   await page.screenshot({ path: `${pasta}/entrar-${sufixo}.jpg`, quality: 82 })
 })
+
+test('print do login', async ({ page }, info) => {
+  await prepararMock(page, { logado: false })
+  await page.goto('./')
+  await page.waitForTimeout(2500)
+  await page.screenshot({ path: `${pasta}/login-${info.project.name}.jpg`, quality: 82 })
+})
