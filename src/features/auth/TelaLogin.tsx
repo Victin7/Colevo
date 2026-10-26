@@ -87,6 +87,11 @@ export function TelaLogin() {
         >
           {modo === 'entrar' ? 'Não tem conta? Cadastre-se' : 'Já tem conta? Entrar'}
         </button>
+
+        <p className="text-center text-xs text-zinc-500">
+          Ao entrar, você concorda com os <a href="./termos.html" className="underline hover:text-zinc-300">Termos de Uso</a> e a{' '}
+          <a href="./privacidade.html" className="underline hover:text-zinc-300">Política de Privacidade</a>.
+        </p>
       </Cartao>
       </Tilt>
     </main>
