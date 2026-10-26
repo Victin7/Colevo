@@ -34,6 +34,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png}'],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // a cena 3D tem ~900 KB
         navigateFallback: 'index.html',
+        // A página de apresentação é um site à parte: o service worker não deve trocá-la pelo app
+        navigateFallbackDenylist: [/\/apresentacao\//],
       },
     }),
   ],
