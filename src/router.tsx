@@ -10,6 +10,7 @@ import { TelaLogin } from './features/auth/TelaLogin'
 import { useSessao } from './features/auth/useSessao'
 import { limparCodigoDaUrl, nomeDoUsuario, retirarConvitePendente } from './features/auth/loginGoogle'
 import { TelaLembretes } from './features/lembretes/TelaLembretes'
+import { BotaoPerfil } from './features/perfil/Perfil'
 import { ABAS, PaginaSala, type Aba } from './features/salas/PaginaSala'
 import { TelaSalas } from './features/salas/TelaSalas'
 
@@ -46,7 +47,7 @@ function Raiz() {
               <nav className="flex items-center gap-1 text-sm text-zinc-400">
                 <BotaoInstalar />
                 <Link to="/lembretes" className="rounded-lg px-3 py-2 hover:bg-white/5 [&.active]:text-white" title="Lembretes">🔔<span className="hidden sm:inline"> Lembretes</span></Link>
-                <span className="hidden px-2 md:inline">{nomeDoUsuario(sessao.user.user_metadata, sessao.user.email)}</span>
+                <BotaoPerfil nomeReserva={nomeDoUsuario(sessao.user.user_metadata, sessao.user.email)} />
                 <Botao
                   variante="fantasma"
                   className="text-sm"

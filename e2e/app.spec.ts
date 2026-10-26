@@ -56,6 +56,20 @@ test.describe('logado', () => {
     await expect(criada.getByRole('link', { name: /WhatsApp/ })).toHaveAttribute('href', /NEW4ZZ/)
   })
 
+  test('quem ficou com o nome do e-mail é convidado a trocar, e o nome novo aparece no topo', async ({ page }) => {
+    await prepararMock(page, { nome: 'victor.anjos1011' })
+    await page.goto('./')
+    await page.getByRole('button', { name: 'Trocar nome' }).click()
+    const dialogo = page.getByRole('dialog', { name: 'Seu perfil' })
+    await dialogo.getByLabel('Seu nome').fill('x')
+    await expect(dialogo.getByRole('alert')).toHaveText(/pelo menos/)
+    await dialogo.getByLabel('Seu nome').fill('  Victor   Anjos ')
+    await dialogo.getByRole('button', { name: 'Salvar' }).click()
+    await expect(dialogo).toBeHidden()
+    await expect(page.getByRole('button', { name: 'Seu perfil: Victor Anjos' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Trocar nome' })).toBeHidden()
+  })
+
   test('calendário, matérias, materiais e painel do líder', async ({ page }) => {
     await prepararMock(page)
     await page.goto('./#/sala/s1?aba=calendario')

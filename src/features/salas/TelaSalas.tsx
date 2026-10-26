@@ -6,6 +6,7 @@ import { useCriarSala, useEntrarNaSala, useMinhasSalas } from './api'
 import { codigoValido, SENHA_MINIMA } from './codigo'
 import { CodigoGrande } from './CodigoGrande'
 import { Compartilhar } from './Compartilhar'
+import { DicaNome } from '../perfil/Perfil'
 
 type SalaCriada = { id: string; nome: string; codigo: string; senha: string }
 
@@ -30,6 +31,8 @@ export function TelaSalas() {
         </h1>
         <p className="mt-2 text-zinc-400">Crie uma sala para a turma ou entre com o código e a senha que o líder passou.</p>
       </section>
+
+      <DicaNome />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <BotaoGrande icone="✨" titulo="Criar sala" texto="Você vira o líder e recebe o código" onClick={() => setModal('criar')} i={1} />

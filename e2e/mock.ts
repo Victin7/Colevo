@@ -48,6 +48,7 @@ export interface OpcoesMock {
   logado?: boolean
   semSalas?: boolean
   concluidos?: string[]
+  nome?: string
 }
 
 const json = (route: Route, body: unknown, status = 200) =>
@@ -56,6 +57,7 @@ const json = (route: Route, body: unknown, status = 200) =>
 export async function prepararMock(alvo: Page | BrowserContext, opcoes: OpcoesMock = {}) {
   const { logado = true, semSalas = false } = opcoes
   const concluidos = new Set(opcoes.concluidos ?? ['e3'])
+  let meuNome = opcoes.nome ?? 'Victin'
 
   if (logado) {
     const user = { id: EU, aud: 'authenticated', role: 'authenticated', email: 'victin@exemplo.com', user_metadata: { nome: 'Victin' }, app_metadata: {}, created_at: '2026-10-01T00:00:00Z' }
@@ -86,6 +88,7 @@ export async function prepararMock(alvo: Page | BrowserContext, opcoes: OpcoesMo
 
     const tabela = caminho.replace('/rest/v1/', '')
     if (metodo !== 'GET' && metodo !== 'HEAD') {
+      if (tabela === 'perfis' && metodo === 'PATCH') meuNome = (req.postDataJSON() as { nome: string }).nome
       if (tabela === 'eventos_concluidos') {
         const id = metodo === 'POST' ? (req.postDataJSON() as { evento_id: string }).evento_id : url.searchParams.get('evento_id')?.replace('eq.', '')
         if (id) (metodo === 'POST' ? concluidos.add(id) : concluidos.delete(id))
@@ -100,6 +103,7 @@ export async function prepararMock(alvo: Page | BrowserContext, opcoes: OpcoesMo
       eventos_concluidos: [...concluidos].map((id) => ({ evento_id: id, eventos: { sala_id: 's1' } })),
       materias,
       materiais,
+      perfis: [{ nome: meuNome }],
       preferencias_lembrete: [{ email_ativo: true, dias_antes: [1, 3] }],
     }
     const lista = dados[tabela] ?? []
