@@ -4,7 +4,7 @@
 
 **Colevo** (**co**letivo + **evo**lução) é a turma organizada junto. Funciona como as salas do Among Us: alguém cria uma sala, passa o **código** e a **senha**, e todo mundo passa a ver as mesmas provas, entregas, matérias e materiais, com **lembretes** antes de cada prazo. Serve para estudantes de qualquer curso.
 
-**👉 [Abrir o Colevo](https://victin7.github.io/Turma-ADS/)** · feito por [Victor Anjos](https://linkedin.com/in/victor-s-anjos), estudante de Análise e Desenvolvimento de Sistemas na UNICID
+**👉 [Abrir o Colevo](https://victin7.github.io/Colevo/)** · feito por [Victor Anjos](https://linkedin.com/in/victor-s-anjos), estudante de Análise e Desenvolvimento de Sistemas na UNICID
 
 <p align="center">
   <img src="docs/prints/agenda-desktop.jpg" width="62%" alt="Agenda da sala com cards 3D e cores por urgência" />

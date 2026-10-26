@@ -6,7 +6,7 @@ const { codigoNoEndereco, enderecoDeRetorno, nomeDoUsuario } = await import('./l
 
 describe('login com Google', () => {
   it('volta para a raiz do app, sem o #', () => {
-    expect(enderecoDeRetorno({ origin: 'https://victin7.github.io', pathname: '/Turma-ADS/' })).toBe('https://victin7.github.io/Turma-ADS/')
+    expect(enderecoDeRetorno({ origin: 'https://victin7.github.io', pathname: '/Colevo/' })).toBe('https://victin7.github.io/Colevo/')
   })
 
   it('reconhece o código de convite no endereço, inclusive como o roteador escreve', () => {

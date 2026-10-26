@@ -17,7 +17,7 @@ type Pendente = {
   dias_antes: number
 }
 
-const APP_URL = 'https://victin7.github.io/Turma-ADS/'
+const APP_URL = 'https://victin7.github.io/Colevo/'
 const ICONE = { prova: '📝', entrega: '📦', apresentacao: '🎤' } as const
 
 const resposta = (corpo: unknown, status = 200) =>

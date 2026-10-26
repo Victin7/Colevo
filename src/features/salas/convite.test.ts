@@ -3,8 +3,8 @@ import { linkConvite, linkWhatsApp, textoConvite } from './convite'
 
 describe('convite', () => {
   it('monta o link com o código, descartando o que vier depois do #', () => {
-    expect(linkConvite('K7QX2M', 'https://victin7.github.io/Turma-ADS/#/sala/123')).toBe(
-      'https://victin7.github.io/Turma-ADS/#/?codigo=K7QX2M',
+    expect(linkConvite('K7QX2M', 'https://victin7.github.io/Colevo/#/sala/123')).toBe(
+      'https://victin7.github.io/Colevo/#/?codigo=K7QX2M',
     )
   })
 
