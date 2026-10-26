@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from '@tanstack/react-router'
 import './index.css'
+import './lib/instalar' // escuta o "pode instalar" do navegador antes de qualquer tela montar
 import { router } from './router'
 
 const queryClient = new QueryClient({

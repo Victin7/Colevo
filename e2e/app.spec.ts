@@ -70,6 +70,18 @@ test.describe('logado', () => {
     await expect(page.getByRole('button', { name: 'Trocar nome' })).toBeHidden()
   })
 
+  test('no celular, "Instalar" sempre aparece e ensina o passo a passo', async ({ page, isMobile }) => {
+    await prepararMock(page)
+    await page.goto('./')
+    const botao = page.getByRole('button', { name: 'Instalar como app' })
+    if (!isMobile) return await expect(botao).toBeHidden() // computador sem o aviso do navegador: nada a mostrar
+    await botao.click()
+    const dialogo = page.getByRole('dialog', { name: 'Instalar o Colevo' })
+    await expect(dialogo.getByText('No Android')).toBeVisible()
+    await dialogo.getByRole('button', { name: 'Entendi' }).click()
+    await expect(dialogo).toBeHidden()
+  })
+
   test('calendário, matérias, materiais e painel do líder', async ({ page }) => {
     await prepararMock(page)
     await page.goto('./#/sala/s1?aba=calendario')
