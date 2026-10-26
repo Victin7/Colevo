@@ -2,6 +2,7 @@
 // com as provas/entregas que estão chegando e que ele ainda não marcou como feitas.
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts'
 import { createClient } from 'jsr:@supabase/supabase-js@2'
+import nodemailer from 'npm:nodemailer@6.9.16'
 
 type Pendente = {
   user_id: string
@@ -56,6 +57,46 @@ function montarEmail(nome: string, itens: Pendente[]) {
   return { html, assunto }
 }
 
+type Envio = { nome: string; enviar: (para: string, assunto: string, html: string) => Promise<void>; fechar?: () => void }
+
+/**
+ * Escolhe por onde mandar:
+ * 1) Gmail (grátis, ~500 e-mails/dia) se GMAIL_USER e GMAIL_APP_PASSWORD existirem;
+ * 2) Resend, se RESEND_API_KEY existir (precisa de domínio verificado para mandar a qualquer pessoa).
+ */
+function escolherEnvio(): Envio | null {
+  const usuario = Deno.env.get('GMAIL_USER')
+  const senhaApp = Deno.env.get('GMAIL_APP_PASSWORD')
+  if (usuario && senhaApp) {
+    // Porta 465 (SSL): as Edge Functions bloqueiam 25 e 587
+    const smtp = nodemailer.createTransport({ host: 'smtp.gmail.com', port: 465, secure: true, pool: true, auth: { user: usuario, pass: senhaApp.replace(/\s/g, '') } })
+    return {
+      nome: 'gmail',
+      enviar: async (para, assunto, html) => {
+        await smtp.sendMail({ from: `Colevo <${usuario}>`, to: para, subject: assunto, html })
+      },
+      fechar: () => smtp.close(),
+    }
+  }
+
+  const chave = Deno.env.get('RESEND_API_KEY')
+  if (chave) {
+    const remetente = Deno.env.get('EMAIL_REMETENTE') ?? 'Colevo <onboarding@resend.dev>'
+    return {
+      nome: 'resend',
+      enviar: async (para, assunto, html) => {
+        const r = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${chave}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ from: remetente, to: para, subject: assunto, html }),
+        })
+        if (!r.ok) throw new Error(`${r.status} ${await r.text()}`)
+      },
+    }
+  }
+  return null
+}
+
 Deno.serve(async (req) => {
   const admin = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!)
 
@@ -67,9 +108,8 @@ Deno.serve(async (req) => {
   if (error) return resposta({ erro: error.message }, 500)
   const pendentes = (data ?? []) as Pendente[]
 
-  const chave = Deno.env.get('RESEND_API_KEY')
-  if (!chave) return resposta({ pendentes: pendentes.length, enviados: 0, aviso: 'RESEND_API_KEY não configurada' })
-  const remetente = Deno.env.get('EMAIL_REMETENTE') ?? 'Colevo <onboarding@resend.dev>'
+  const enviar = escolherEnvio()
+  if (!enviar) return resposta({ pendentes: pendentes.length, enviados: 0, aviso: 'Nenhum envio configurado (GMAIL_USER + GMAIL_APP_PASSWORD ou RESEND_API_KEY)' })
 
   // Um e-mail por aluno, juntando tudo o que está chegando para ele.
   const porAluno = new Map<string, Pendente[]>()
@@ -79,19 +119,17 @@ Deno.serve(async (req) => {
   const falhas: string[] = []
   for (const itens of porAluno.values()) {
     const { html, assunto } = montarEmail(itens[0].nome, itens)
-    const r = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${chave}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from: remetente, to: itens[0].email, subject: assunto, html }),
-    })
-    if (!r.ok) {
-      falhas.push(`${r.status} ${await r.text()}`)
+    try {
+      await enviar.enviar(itens[0].email, assunto, html)
+    } catch (e) {
+      falhas.push(String(e instanceof Error ? e.message : e).slice(0, 300))
       continue
     }
     enviados++
     // Registra para não mandar o mesmo lembrete de novo
     await admin.from('lembretes_enviados').insert(itens.map((i) => ({ evento_id: i.evento_id, user_id: i.user_id, dias_antes: i.dias_antes })))
   }
+  await enviar.fechar?.()
 
-  return resposta({ pendentes: pendentes.length, alunos: porAluno.size, enviados, falhas: falhas.slice(0, 3) })
+  return resposta({ via: enviar.nome, pendentes: pendentes.length, alunos: porAluno.size, enviados, falhas: falhas.slice(0, 3) })
 })
