@@ -68,3 +68,14 @@ test.describe('logado', () => {
     await expect(page.getByText('Painel do líder')).toBeVisible()
   })
 })
+
+test('botão "Continuar com Google" aparece e manda para o Google', async ({ page }) => {
+  await prepararMock(page, { logado: false })
+  // O Supabase responde com o endereço do Google; aqui só conferimos que o app chama o login certo
+  const pedido = page.waitForRequest((r) => r.url().includes('/auth/v1/authorize') && r.url().includes('provider=google'))
+  await page.route('**/auth/v1/authorize**', (r) => r.fulfill({ status: 200, body: 'ok' }))
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Continuar com Google' }).click()
+  const req = await pedido
+  expect(new URL(req.url()).searchParams.get('redirect_to')).toMatch(/^http:\/\/localhost:\d+\/$/)
+})

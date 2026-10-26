@@ -1,4 +1,5 @@
-import { createHashHistory, createRootRoute, createRoute, createRouter, Link, Outlet } from '@tanstack/react-router'
+import { useEffect } from 'react'
+import { createHashHistory, createRootRoute, createRoute, createRouter, Link, Outlet, useNavigate } from '@tanstack/react-router'
 import { useQueryClient } from '@tanstack/react-query'
 import { Botao } from './components/ui'
 import { BotaoInstalar } from './components/BotaoInstalar'
@@ -7,6 +8,7 @@ import { Fundo3D } from './components/Fundo3D'
 import { supabase } from './lib/supabase'
 import { TelaLogin } from './features/auth/TelaLogin'
 import { useSessao } from './features/auth/useSessao'
+import { limparCodigoDaUrl, nomeDoUsuario, retirarConvitePendente } from './features/auth/loginGoogle'
 import { TelaLembretes } from './features/lembretes/TelaLembretes'
 import { ABAS, PaginaSala, type Aba } from './features/salas/PaginaSala'
 import { TelaSalas } from './features/salas/TelaSalas'
@@ -19,6 +21,15 @@ import { TelaSalas } from './features/salas/TelaSalas'
 function Raiz() {
   const sessao = useSessao()
   const qc = useQueryClient()
+  const navigate = useNavigate()
+
+  // Voltando do Google: limpa o ?code= do endereço e, se a pessoa veio de um convite, reabre o "Entrar na sala"
+  useEffect(() => {
+    if (!sessao) return
+    limparCodigoDaUrl()
+    const codigo = retirarConvitePendente()
+    if (codigo) navigate({ to: '/', search: { codigo } })
+  }, [sessao, navigate])
 
   return (
     <>
@@ -35,7 +46,7 @@ function Raiz() {
               <nav className="flex items-center gap-1 text-sm text-zinc-400">
                 <BotaoInstalar />
                 <Link to="/lembretes" className="rounded-lg px-3 py-2 hover:bg-white/5 [&.active]:text-white" title="Lembretes">🔔<span className="hidden sm:inline"> Lembretes</span></Link>
-                <span className="hidden px-2 md:inline">{(sessao.user.user_metadata.nome as string | undefined) ?? sessao.user.email}</span>
+                <span className="hidden px-2 md:inline">{nomeDoUsuario(sessao.user.user_metadata, sessao.user.email)}</span>
                 <Botao
                   variante="fantasma"
                   className="text-sm"

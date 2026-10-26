@@ -11,4 +11,9 @@ if (!url || !anonKey) {
 
 // O tipo <Database> faz o TypeScript conhecer cada tabela e coluna:
 // errar o nome de um campo vira erro de compilação, não bug em produção.
-export const supabase = createClient<Database>(url, anonKey)
+//
+// flowType 'pkce': o login com Google volta com ?code=... (antes do #), em vez de
+// colocar o token no #. Como o app usa rotas com # (#/sala/...), o fluxo padrão se perderia.
+export const supabase = createClient<Database>(url, anonKey, {
+  auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true },
+})
