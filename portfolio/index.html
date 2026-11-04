@@ -387,7 +387,7 @@ a { color: inherit; }
     var chegada = reduce ? 1 : clamp((t - tIni - 250) / 3200, 0, 1);
     var w = atualizar(u, t, chegada);
 
-    var a = anguloCam(u), raio = lerp(celular ? 30 : 19, celular ? 31 : 18.5, w), alto = lerp(7 + Math.sin(u * 9) * 1.5, 5.3, w), olhaY = lerp(3.8, 5.1, w);
+    var a = anguloCam(Math.min(u, K[6])), raio = lerp(celular ? 30 : 19, celular ? 31 : 18.5, w), alto = lerp(7 + Math.sin(u * 9) * 1.5, 5.3, w), olhaY = lerp(3.8, 5.1, w);
     alvoP.set(Math.sin(a) * raio, alto, Math.cos(a) * raio); alvoL.set(0, olhaY, 0);
     if (!celular) { direita.set(Math.cos(a), 0, -Math.sin(a)); var desl = lerp(4.2, 3.6, w); alvoP.addScaledVector(direita, -desl); alvoL.addScaledVector(direita, -desl); }
     else { alvoL.y += lerp(1.4, -1.2, w); }
