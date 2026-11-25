@@ -32,7 +32,7 @@ a { color: inherit; }
 :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
 #cena { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; touch-action: pan-y; }
 .no3d #cena { display: none; }
-.trilho { height: 1100vh; position: relative; z-index: 1; }
+.trilho { height: 1900vh; position: relative; z-index: 1; }
 .ui { position: fixed; inset: 0; z-index: 5; pointer-events: none; padding: calc(18px + env(safe-area-inset-top, 0px)) max(22px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) max(22px, env(safe-area-inset-left, 0px)); }
 .ui a, .ui button { pointer-events: auto; }
 .topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
@@ -126,7 +126,7 @@ a { color: inherit; }
 <div class="ui">
   <div class="topo">
     <a class="marca" href="#" id="inicio"><i></i>Victin-Studio</a>
-    <div class="nav"><button type="button" class="opt" data-ir="1">projetos</button><button type="button" data-ir="6">contato</button><span class="contador" id="contador">00/06</span></div>
+    <div class="nav"><button type="button" class="opt" data-ir="1">projetos</button><button type="button" data-ir="10">contato</button><span class="contador" id="contador">00/10</span></div>
   </div>
   <section class="texto" id="texto" aria-live="polite"></section>
   <div class="base"><span id="dica">mexa o ponteiro · role para desmontar</span><div class="barra"><i id="barra"></i></div><span>São Paulo · BR</span></div>
@@ -142,15 +142,19 @@ a { color: inherit; }
   var suave = function (a, b, x) { var t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
 
   /* ===== capítulos ===== */
-  var K = [.05, .2, .33, .46, .59, .72, .9];
+  var K = [.04, .13, .22, .31, .40, .49, .58, .67, .76, .85, .93], ULT = K.length - 1;
   var CAP = [
     { k: 'Full stack developer · São Paulo', h1: 'Victor <em>Anjos</em>', p: 'Construo sistemas que resolvem problemas reais, bloco a bloco, do banco de dados à interface.', acoes: [['GitHub ↗', 'https://github.com/Victin7', 1], ['LinkedIn ↗', 'https://linkedin.com/in/victor-s-anjos']] },
     { n: '01', k: 'Gestão predial', t: 'Europa <em>Manutenção</em>', p: 'Na administração do Condomínio Europa, transformei a planilha de manutenções em um sistema completo para as 7 torres: ordens de serviço, equipes, prestadores e ativos.', tags: ['React', 'Supabase', 'PWA', '2FA', 'v14'], acoes: [['Ver no GitHub ↗', 'https://github.com/Victin7/europa-manutencao', 1]] },
-    { n: '02', k: 'Engajamento', t: 'Anjos<em>Up</em>', p: 'Para equipes de telemarketing: ranking, conquistas, kudos entre colegas e premiação mensal com aprovação e trilha de auditoria.', tags: ['React', 'TypeScript', 'Supabase', 'RLS'], estado: 'em desenvolvimento', acoes: [] },
-    { n: '03', k: 'Para estudantes', t: '<em>Co</em>levo', p: 'Salas com código e senha para a turma organizar provas, entregas e materiais juntos, com lembrete por e-mail antes de cada prazo.', tags: ['React', 'Supabase', 'Realtime', 'Edge Functions'], acoes: [['Abrir o Colevo ↗', 'https://victin7.github.io/Colevo/', 1], ['Apresentação ↗', 'https://victin7.github.io/Colevo/apresentacao/']] },
-    { n: '04', k: 'IA aplicada', t: 'BossFit <em>&</em> NutriSync', p: 'Coach de treino com GPT-4o, histórico e voz, e análise de refeições a partir da foto do prato com GPT-4o Vision.', tags: ['GPT-4o', 'Vision', 'Edge Functions'], acoes: [['NutriSync no GitHub ↗', 'https://github.com/Victin7/LIFESYNC-AI', 1]] },
-    { n: '05', k: 'Dados e gestão', t: 'NEXO <em>&</em> StockWise', p: 'Hábitos, metas e finanças pessoais num lugar só, e gestão de estoque para pequenas empresas, com relatórios e alertas de reposição.', tags: ['React', 'TypeScript', 'Supabase', 'Gráficos'], acoes: [['StockWise ↗', 'https://victin7.github.io/Stockwise/', 1], ['NEXO no GitHub ↗', 'https://github.com/Victin7/NEXO']] },
-    { n: '06', k: 'De volta ao começo', t: 'Vamos construir <em>juntos?</em>', p: 'Estudo Análise e Desenvolvimento de Sistemas na UNICID e procuro estágio em desenvolvimento.', contato: true, estado: 'aberto a estágio', acoes: [['GitHub ↗', 'https://github.com/Victin7'], ['LinkedIn ↗', 'https://linkedin.com/in/victor-s-anjos']] }
+    { n: '02', k: 'Controle de veículos', t: 'Europa <em>Cars</em>', p: 'O mesmo condomínio, outro problema: o cadastro dos veículos dos moradores e a entrega dos selos de identificação nas 7 torres e 302 apartamentos, conferidos com a lista diária da portaria.', tags: ['Supabase', 'Vercel', 'Acesso por PIN'], estado: 'uso interno · código privado', acoes: [] },
+    { n: '03', k: 'Gastronomia em 3D', t: 'PLATTO<em>.A</em>', p: 'Cardápio digital em que o cliente escaneia o QR Code da mesa e vê cada prato em 3D antes de pedir. Cada restaurante tem seu painel, suas cores e, se quiser, pedidos direto pelo cardápio.', tags: ['Three.js', 'React', 'Supabase', 'QR Code'], acoes: [['Abrir o PLATTO.A ↗', 'https://platto-a.vercel.app', 1], ['Apresentação ↗', 'https://github.com/Victin7/platto.a-apresentacao']] },
+    { n: '04', k: 'Agenda para barbearias', t: 'Anjos<em>Flow</em>', p: 'SaaS de agendamento para várias barbearias: cada uma com seu endereço próprio, agenda sem horário duplicado, painel do barbeiro e lembrete do horário por e-mail.', tags: ['Next.js', 'Supabase', 'Vercel', 'Resend'], estado: 'em lançamento', acoes: [] },
+    { n: '05', k: 'Para estudantes', t: '<em>Co</em>levo', p: 'Salas com código e senha para a turma organizar provas, entregas e materiais juntos, com lembrete por e-mail antes de cada prazo.', tags: ['React', 'Supabase', 'Realtime', 'Edge Functions'], acoes: [['Abrir o Colevo ↗', 'https://victin7.github.io/Colevo/', 1], ['Apresentação ↗', 'https://victin7.github.io/Colevo/apresentacao/']] },
+    { n: '06', k: 'Finanças pessoais', t: 'Pru<em>mo</em>', p: 'Para quem é CLT ou autônomo saber quanto vai sobrar no mês: contas fixas, metas de compra, 13º, férias e reserva de emergência, num visual 3D simples de usar.', tags: ['React', 'TypeScript', 'Supabase'], estado: 'código privado', acoes: [] },
+    { n: '07', k: 'IA aplicada', t: 'BossFit <em>&</em> NutriSync', p: 'Coach de treino com GPT-4o, histórico e voz, e análise de refeições a partir da foto do prato com GPT-4o Vision.', tags: ['GPT-4o', 'Vision', 'Edge Functions'], acoes: [['NutriSync no GitHub ↗', 'https://github.com/Victin7/LIFESYNC-AI', 1]] },
+    { n: '08', k: 'Dados e gestão', t: 'NEXO <em>&</em> StockWise', p: 'Hábitos, metas e finanças pessoais num lugar só, e gestão de estoque para pequenas empresas, com relatórios e alertas de reposição.', tags: ['React', 'TypeScript', 'Supabase', 'Gráficos'], acoes: [['StockWise ↗', 'https://victin7.github.io/Stockwise/', 1], ['NEXO no GitHub ↗', 'https://github.com/Victin7/NEXO']] },
+    { n: '09', k: 'Engajamento', t: 'Anjos<em>Up</em>', p: 'Para equipes de telemarketing: ranking, conquistas, kudos entre colegas e premiação mensal com aprovação e trilha de auditoria.', tags: ['React', 'TypeScript', 'Supabase', 'RLS'], estado: 'em desenvolvimento', acoes: [] },
+    { n: '10', k: 'De volta ao começo', t: 'Vamos construir <em>juntos?</em>', p: 'Estudo Análise e Desenvolvimento de Sistemas na UNICID e trabalho na administração do Condomínio Europa, onde nasceram meus primeiros sistemas.', contato: true, estado: 'aberto a projetos', acoes: [['GitHub ↗', 'https://github.com/Victin7'], ['LinkedIn ↗', 'https://linkedin.com/in/victor-s-anjos']] }
   ];
   var texto = document.getElementById('texto'), contador = document.getElementById('contador'), barra = document.getElementById('barra'), dica = document.getElementById('dica');
   function maxScroll() { return Math.max(1, document.documentElement.scrollHeight - innerHeight); }
@@ -162,8 +166,8 @@ a { color: inherit; }
   function mostrar(c) {
     if (c === capAtual) return;
     var primeira = capAtual === -1; capAtual = c;
-    contador.textContent = String(c).padStart(2, '0') + '/06';
-    dica.textContent = c === 0 ? 'mexa o ponteiro · role para desmontar' : c === 6 ? 'de volta ao começo' : 'role para o próximo';
+    contador.textContent = String(c).padStart(2, '0') + '/' + String(ULT).padStart(2, '0');
+    dica.textContent = c === 0 ? 'mexa o ponteiro · role para desmontar' : c === ULT ? 'de volta ao começo' : 'role para o próximo';
     function encher() {
       var d = CAP[c], h = '';
       h += '<div class="k">' + (d.n ? '<b>' + d.n + '</b>' : '') + '<span>' + d.k + '</span></div>';
@@ -263,9 +267,55 @@ a { color: inherit; }
   }
   var formas = [];
   formas.push(rostoForma(anguloCam(0)));
-  // 1 · Europa: 7 torres em roda
+  // 1 · Europa Manutenção: 7 torres em roda
   formas.push(projeto((function () { var l = []; for (var t = 0; t < 7; t++) { var a = t / 7 * Math.PI * 2 + .3, cx = Math.round(Math.sin(a) * 6.5), cz = Math.round(Math.cos(a) * 6.5), h = 9 + (t % 3) * 2; for (var y = 0; y < h; y++) for (var x = 0; x < 2; x++) for (var z = 0; z < 2; z++) l.push([cx + x - .5, y, cz + z - .5, y === h - 1 ? 4 : (y % 2 && rnd(t * 99 + y * 7 + x * 3 + z) < .3 ? 3 : (t % 2 ? 0 : 1))]); } for (var k = 0; k < 40; k++) { var b = k / 40 * Math.PI * 2; l.push([Math.round(Math.cos(b) * 10), 0, Math.round(Math.sin(b) * 10), 2]); } return l; })(), anguloCam(K[1])));
-  // 2 · AnjosUp: pódio e troféu
+  // 2 · Europa Cars: o carro com o selo no vidro, sobre as vagas
+  formas.push(projeto((function () {
+    var l = [];
+    for (var x = -7; x <= 6; x++) for (var z = -3; z <= 2; z++) for (var y = 1; y <= 3; y++) l.push([x + .5, y, z + .5, y === 3 && (x === -7 || x === 6) ? 2 : (y === 2 && (x === -7 || x === 6) ? 3 : 0)]);
+    for (var x2 = -3; x2 <= 3; x2++) for (var z2 = -3; z2 <= 2; z2++) for (var y2 = 4; y2 <= 5; y2++) { var borda = z2 === -3 || z2 === 2 || x2 === -3 || x2 === 3; l.push([x2 + .5, y2, z2 + .5, y2 === 5 ? 1 : (borda ? 4 : 1)]); }
+    l.push([3.5, 4.6, -3.2, 3]);
+    [[-5, -3.3], [-5, 2.3], [4, -3.3], [4, 2.3]].forEach(function (w) { for (var a = 0; a < 10; a++) { var an = a / 10 * Math.PI * 2; l.push([w[0] + .5 + Math.cos(an) * 1.3, 1.1 + Math.sin(an) * 1.3, w[1] + .5, 4]); } l.push([w[0] + .5, 1.1, w[1] + .5, 2]); });
+    for (var k = -9; k <= 9; k += 2) { l.push([k, 0, -6, 1]); l.push([k, 0, 6, 1]); }
+    return l;
+  })(), anguloCam(K[2])));
+  // 3 · PLATTO.A: o prato com a cúpula e o vapor
+  formas.push(projeto((function () {
+    var l = [];
+    for (var x = -8; x <= 8; x++) for (var z = -8; z <= 8; z++) { var d = Math.sqrt(x * x + z * z); if (d <= 8) l.push([x, 0, z, d > 7 ? 2 : 0]); if (d > 7 && d <= 8) l.push([x, 1, z, 1]); }
+    for (var y = 1; y <= 5; y++) { var r = Math.sqrt(Math.max(0, 25 - (y - .5) * (y - .5))); for (x = -5; x <= 5; x++) for (z = -5; z <= 5; z++) { var d2 = Math.sqrt(x * x + z * z); if (d2 <= r && d2 >= r - 1.2) l.push([x, y, z, y >= 4 ? 3 : (rnd(x * 7 + z * 13 + y) < .25 ? 3 : 4)]); } }
+    [[-2, 0], [1, 1], [3, -1]].forEach(function (v, i) { for (var y2 = 7; y2 <= 10; y2++) l.push([v[0] + Math.round(Math.sin(y2 * .9 + i) * .8), y2 + i % 2, v[1], 1]); });
+    return l;
+  })(), anguloCam(K[3])));
+  // 4 · AnjosFlow: o poste de barbearia girando em faixas
+  formas.push(projeto((function () {
+    var l = [];
+    for (var y = 2; y <= 11; y++) for (var x = -2; x <= 2; x++) for (var z = -2; z <= 2; z++) { var d = Math.sqrt(x * x + z * z); if (d <= 2.3 && d >= 1.2) { var a = Math.atan2(z, x) / (Math.PI * 2) + y * .14; l.push([x, y, z, (Math.floor(a * 3 + 30) % 3 === 0) ? 3 : (Math.floor(a * 3 + 30) % 3 === 1 ? 0 : 1)]); } }
+    [[12, 14], [-1, 1]].forEach(function (f) { for (var y = f[0]; y <= f[1]; y++) for (var x = -3; x <= 3; x++) for (var z = -3; z <= 3; z++) { var c = y === 14 ? 1.8 : (y === -1 ? 3.2 : 3); if (Math.sqrt(x * x + z * z) <= c) l.push([x, y + 1, z, 4]); } });
+    for (var x2 = -4; x2 <= 4; x2++) for (var z2 = -4; z2 <= 4; z2++) if (Math.sqrt(x2 * x2 + z2 * z2) <= 4.2) l.push([x2, 0, z2, 2]);
+    return l;
+  })(), anguloCam(K[4])));
+  // 5 · Colevo: o "C" com as três cabeças
+  formas.push(projeto((function () {
+    var l = [];
+    for (var x = -9; x <= 9; x++) for (var y = -9; y <= 9; y++) { var r = Math.sqrt(x * x + y * y), a = Math.atan2(y, x); if (Math.abs(r - 6) < 1.6 && Math.abs(a) > .78) for (var z = 0; z < 2; z++) l.push([x, y + 10, z - .5, a > 1.9 ? 0 : a < -1.9 ? 1 : (rnd(x * 13 + y) < .12 ? 3 : 0)]); }
+    [[.62, 9.2, 3], [Math.PI, 9.4, 1], [-.62, 9.2, 2]].forEach(function (h) { var cx = Math.cos(h[0]) * h[1], cy = Math.sin(h[0]) * h[1] + 10; for (var x = -2; x <= 2; x++) for (var y = -2; y <= 2; y++) for (var z = -2; z <= 2; z++) if (x * x + y * y + z * z <= 4.5) l.push([Math.round(cx) + x, Math.round(cy) + y, z, h[2] === 3 ? 3 : 0]); });
+    return l;
+  })(), anguloCam(K[5])));
+  // 6 · Prumo: o prumo de pedreiro sobre pilhas de moedas
+  formas.push(projeto((function () {
+    var l = [];
+    for (var x = -9; x <= 9; x++) l.push([x, 14, 0, 4]);
+    for (var y = 10; y <= 13; y++) l.push([0, y, 0, 2]);
+    for (var y2 = 3; y2 <= 9; y2++) { var r = y2 >= 7 ? 2.6 : (y2 - 3) * .55 + .2; for (x = -3; x <= 3; x++) for (var z = -3; z <= 3; z++) { var d = Math.sqrt(x * x + z * z); if (d <= r && (d >= r - 1.1 || y2 === 9)) l.push([x, y2, z, y2 === 7 ? 3 : 4]); } }
+    [[-7, 4], [-4.5, 7], [5, 5], [7.5, 9]].forEach(function (c, i) { for (var y3 = 0; y3 < c[1]; y3++) for (var a = 0; a < 8; a++) { var an = a / 8 * Math.PI * 2; l.push([c[0] + Math.cos(an) * 1.1, y3, Math.sin(an) * 1.1 + (i % 2 ? 1.5 : -1.5), y3 === c[1] - 1 ? 3 : (y3 % 2 ? 1 : 0)]); } });
+    return l;
+  })(), anguloCam(K[6])));
+  // 7 · IA: cristal oco
+  formas.push(projeto((function () { var l = []; for (var x = -7; x <= 7; x++) for (var y = -7; y <= 7; y++) for (var z = -7; z <= 7; z++) { var s = Math.abs(x) + Math.abs(y) + Math.abs(z); if (s >= 6 && s <= 7) l.push([x, y + 9, z, Math.abs(y) === 0 ? 3 : (y > 0 ? 0 : 1)]); } return l; })(), anguloCam(K[7])));
+  // 8 · Dados: barras sobre caixas
+  formas.push(projeto((function () { var l = []; for (var x = -8; x < 8; x++) for (var z = -3; z < 3; z++) l.push([x + .5, 0, z + .5, (x + z) % 2 ? 1 : 2]); [4, 7, 5, 10, 8, 13].forEach(function (h, i) { var bx = -7 + i * 2.6; for (var y = 1; y <= h; y++) for (var x = 0; x < 2; x++) for (var z = 0; z < 2; z++) l.push([Math.round(bx) + x, y, z - 1 + .5, y === h ? 3 : (i % 2 ? 0 : 1)]); }); return l; })(), anguloCam(K[8])));
+  // 9 · AnjosUp: pódio e troféu
   formas.push(projeto((function () {
     var l = []; [[-5, 3, 2], [0, 5, 0], [5, 2, 1]].forEach(function (d) { for (var y = 0; y < d[1]; y++) for (var x = -2; x < 2; x++) for (var z = -2; z < 2; z++) l.push([d[0] + x + .5, y, z + .5, (x === -2 || x === 1 || z === -2 || z === 1) ? d[2] : 1]); });
     for (var x = -1; x <= 1; x++) for (var z = -1; z <= 1; z++) l.push([x, 5, z, 4]);
@@ -273,20 +323,9 @@ a { color: inherit; }
     for (var y = 8; y <= 12; y++) { var r = 1.3 + (y - 8) * .45; for (x = -4; x <= 4; x++) for (z = -4; z <= 4; z++) { var d2 = Math.sqrt(x * x + z * z); if (d2 <= r + .5 && (d2 >= r - .6 || y === 8)) l.push([x, y, z, y === 12 ? 3 : 0]); } }
     [-4, 4].forEach(function (s) { for (var y = 9; y <= 11; y++) l.push([s * 1.05, y, 0, 0]); });
     return l;
-  })(), anguloCam(K[2])));
-  // 3 · Colevo: o "C" com as três cabeças
-  formas.push(projeto((function () {
-    var l = [];
-    for (var x = -9; x <= 9; x++) for (var y = -9; y <= 9; y++) { var r = Math.sqrt(x * x + y * y), a = Math.atan2(y, x); if (Math.abs(r - 6) < 1.6 && Math.abs(a) > .78) for (var z = 0; z < 2; z++) l.push([x, y + 10, z - .5, a > 1.9 ? 0 : a < -1.9 ? 1 : (rnd(x * 13 + y) < .12 ? 3 : 0)]); }
-    [[.62, 9.2, 3], [Math.PI, 9.4, 1], [-.62, 9.2, 2]].forEach(function (h) { var cx = Math.cos(h[0]) * h[1], cy = Math.sin(h[0]) * h[1] + 10; for (var x = -2; x <= 2; x++) for (var y = -2; y <= 2; y++) for (var z = -2; z <= 2; z++) if (x * x + y * y + z * z <= 4.5) l.push([Math.round(cx) + x, Math.round(cy) + y, z, h[2] === 3 ? 3 : 0]); });
-    return l;
-  })(), anguloCam(K[3])));
-  // 4 · IA: cristal oco
-  formas.push(projeto((function () { var l = []; for (var x = -7; x <= 7; x++) for (var y = -7; y <= 7; y++) for (var z = -7; z <= 7; z++) { var s = Math.abs(x) + Math.abs(y) + Math.abs(z); if (s >= 6 && s <= 7) l.push([x, y + 9, z, Math.abs(y) === 0 ? 3 : (y > 0 ? 0 : 1)]); } return l; })(), anguloCam(K[4])));
-  // 5 · Dados: barras sobre caixas
-  formas.push(projeto((function () { var l = []; for (var x = -8; x < 8; x++) for (var z = -3; z < 3; z++) l.push([x + .5, 0, z + .5, (x + z) % 2 ? 1 : 2]); [4, 7, 5, 10, 8, 13].forEach(function (h, i) { var bx = -7 + i * 2.6; for (var y = 1; y <= h; y++) for (var x = 0; x < 2; x++) for (var z = 0; z < 2; z++) l.push([Math.round(bx) + x, y, z - 1 + .5, y === h ? 3 : (i % 2 ? 0 : 1)]); }); return l; })(), anguloCam(K[5])));
-  // 6 · De volta ao rosto
-  formas.push(rostoForma(anguloCam(K[6])));
+  })(), anguloCam(K[9])));
+  // 10 · De volta ao rosto
+  formas.push(rostoForma(anguloCam(K[ULT])));
 
   // a foto vai nos blocos: cada um mostra o seu pedaço do retrato
   var fotoTx = new THREE.Texture(); fotoTx.encoding = THREE.sRGBEncoding; fotoTx.minFilter = THREE.LinearFilter;
@@ -325,7 +364,7 @@ a { color: inherit; }
       var cy = out.y - 6.3, d = Math.sqrt(out.x * out.x + cy * cy + out.z * out.z * .2);
       var onda = Math.sin(t * .0016 - d * 1.1) * .025;
       var salto = rnd(j + 41) < .12 ? Math.pow(Math.max(0, Math.sin(t * .0003 * (1 + rnd(j + 31)) + fase[j])), 120) * .7 : 0;
-      var ang = anguloCam(F === formas[0] ? 0 : K[6]), nx = Math.sin(ang), nz = Math.cos(ang);
+      var ang = anguloCam(F === formas[0] ? 0 : K[ULT]), nx = Math.sin(ang), nz = Math.cos(ang);
       out.x += nx * (onda + salto); out.z += nz * (onda + salto);
       // gira de leve em direção ao ponteiro
       var yaw = mxS * .22, pit = myS * .08, ox = out.x, oz = out.z, oy = out.y - 5.5;
@@ -336,7 +375,7 @@ a { color: inherit; }
   }
   function anel(j, t, out) { var a = j / M * Math.PI * 2 * 3 + t * .0003 + rnd(j) * .4, r = 6.5 + (j % 9) * .55, h = 1.5 + (j % 13) * .75; out.set(Math.cos(a) * r, h + Math.sin(a * 2 + t * .001) * .6, Math.sin(a) * r); return out; }
 
-  function anguloFoto(A, B, s, deCeu) { if (deCeu) return anguloCam(0); var F = s < .5 ? A : B; return F.rosto ? (F === formas[0] ? anguloCam(0) : anguloCam(K[6])) + mxS * .22 : 0; }
+  function anguloFoto(A, B, s, deCeu) { if (deCeu) return anguloCam(0); var F = s < .5 ? A : B; return F.rosto ? (F === formas[0] ? anguloCam(0) : anguloCam(K[ULT])) + mxS * .22 : 0; }
   var mB = new THREE.Matrix4(), qB = new THREE.Quaternion(), eB = new THREE.Euler(), sB = new V(), pA = new V(), pR = new V(), pB = new V(), pX = new V();
   function atualizar(u, t, chegada) {
     var A, B, s, deCeu = false;
@@ -387,7 +426,7 @@ a { color: inherit; }
     var chegada = reduce ? 1 : clamp((t - tIni - 250) / 3200, 0, 1);
     var w = atualizar(u, t, chegada);
 
-    var a = anguloCam(Math.min(u, K[6])), raio = lerp(celular ? 30 : 19, celular ? 31 : 18.5, w), alto = lerp(7 + Math.sin(u * 9) * 1.5, 5.3, w), olhaY = lerp(3.8, 5.1, w);
+    var a = anguloCam(Math.min(u, K[ULT])), raio = lerp(celular ? 30 : 19, celular ? 31 : 18.5, w), alto = lerp(7 + Math.sin(u * 9) * 1.5, 5.3, w), olhaY = lerp(3.8, 5.1, w);
     alvoP.set(Math.sin(a) * raio, alto, Math.cos(a) * raio); alvoL.set(0, olhaY, 0);
     if (!celular) { direita.set(Math.cos(a), 0, -Math.sin(a)); var desl = lerp(4.2, 3.6, w); alvoP.addScaledVector(direita, -desl); alvoL.addScaledVector(direita, -desl); }
     else { alvoL.y += lerp(1.4, -1.2, w); }
