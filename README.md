@@ -1,3 +1,18 @@
+<!-- topo:inicio -->
+<p align="center">
+  <img src="./.github/readme/banner.svg" alt="Colevo — Salas para a turma da faculdade organizar provas, entregas, lembretes e materiais num lugar só." width="100%"/>
+</p>
+
+<p align="center">
+  <a href="https://victin7.github.io/Colevo/"><img src="https://img.shields.io/badge/Abrir_o_Colevo-60a5fa?style=for-the-badge&labelColor=0b0d16" alt="Abrir o Colevo"/></a>
+  <a href="https://victin7.github.io/Colevo/apresentacao/"><img src="https://img.shields.io/badge/Apresentação-60a5fa?style=for-the-badge&labelColor=0b0d16" alt="Apresentação"/></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-0b0d16?style=for-the-badge&logo=react&logoColor=white" alt="React"/> <img src="https://img.shields.io/badge/TypeScript-0b0d16?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/> <img src="https://img.shields.io/badge/Supabase-0b0d16?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase"/> <img src="https://img.shields.io/badge/Three.js-0b0d16?style=for-the-badge&logo=threedotjs&logoColor=white" alt="Three.js"/> <img src="https://img.shields.io/badge/PWA-0b0d16?style=for-the-badge&logo=pwa&logoColor=white" alt="PWA"/>
+</p>
+<!-- topo:fim -->
+
 <p align="center">
   <img src="docs/colevo-logo.jpg" width="520" alt="Colevo — Crescemos juntos." />
 </p>
